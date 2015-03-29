@@ -34,24 +34,6 @@ public class DatabaseUtil{
 		return result;
 	}
 	
-	public static int getRecordNum(String sql){
-		if(sql==null||sql.trim().equals(""))
-			return -1;
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		int result=0;
-		try{
-			conn=DatabaseUtil.getConnection();
-			pstmt=DatabaseUtil.getPreparedStatement(conn,sql);
-			result=0;//pstmt.executeQuery();
-		}catch(Exception e){
-		}finally{
-			closeStatement(pstmt);
-			closeConn(conn);
-		}
-		return result;
-	}
-	
 	public static List<Map<String,String>> getQueryList(String sql,List<Object> paramList)throws Exception{
 		if(sql==null||sql.trim().equals("")){
 			logger.info("parameter is valid!");
