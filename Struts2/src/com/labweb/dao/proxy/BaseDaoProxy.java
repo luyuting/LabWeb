@@ -1,8 +1,8 @@
 package com.labweb.dao.proxy;
 
-import com.labweb.dao.impl.BaseDaoImpl;
 
 public class BaseDaoProxy {
+	/*
 	protected BaseDaoImpl dao = null;
 	BaseDaoProxy(Class<? extends BaseDaoImpl> daoClass){
 		try {
@@ -12,5 +12,5 @@ public class BaseDaoProxy {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

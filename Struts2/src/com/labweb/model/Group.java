@@ -1,5 +1,7 @@
 package com.labweb.model;
 
+import java.util.List;
+
 public class Group {
 	private String groupId;
 	private String groupPic;
@@ -41,11 +43,11 @@ public class Group {
 	public Group(){
 	}
 	
-	public Group(String groupId,String groupPic,String groupName,String groupIntro){
-		this.groupId=groupId;
-		this.groupPic=groupPic;
-		this.groupName=groupName;
-		this.groupIntro=groupIntro;
+	public Group(List<String> list){
+		this.groupId=list.get(0);
+		this.groupPic=list.get(1);
+		this.groupName=list.get(2);
+		this.groupIntro=list.get(3);
 	}
 	
 }

@@ -1,51 +1,59 @@
 package com.labweb.dao.impl;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 import com.labweb.dao.IProjectDao;
 import com.labweb.model.Project;
 
-public class ProjectDaoImpl extends PageBaseDaoImpl implements IProjectDao{
-	
-	public ProjectDaoImpl(){
-		doCreate(TABLE_PROJECT,PROJECT_TIME);
-	}
-	
+public class ProjectDaoImpl extends BaseDaoImpl<Project> implements IProjectDao{
+
 	@Override
-	public boolean writeProject(Project project) {
+	public int doInsert(List<Object> paramList) {
 		// TODO Auto-generated method stub
-		String addSql="insert into "+TABLE_PROJECT+" values(uuid(),?,?,?,now())";
-		List<Object> paramList=new ArrayList<Object>();
-		paramList.add(project.getProjectPic());
-		paramList.add(project.getProjectName());
-		paramList.add(project.getProjectContent());
-		return addRecord(addSql, paramList);
-	}
-	
-	@Override
-	public List<Project> getPageProjectList(int pageIndex, int numPerPage) {
-		// TODO Auto-generated method stub
-		List<Map<String, String>> pageProject=getPageMap(pageIndex, numPerPage);
-		List<Project> projectList=new ArrayList<Project>();
-		for(Map<String,String> projectMap:pageProject){
-			Iterator<Entry<String,String>> projectEntryIt=projectMap.entrySet().iterator();
-			Project project=new Project();
-			while(projectEntryIt.hasNext()){
-				Entry<String,String> projectEntry=projectEntryIt.next();
-				String value=projectEntry.getValue();
-				switch(projectEntry.getKey()){
-					case PROJECT_ID:project.setProjectId(value);break;
-					case PROJECT_PIC:project.setProjectPic(value);break;
-					case PROJECT_NAME:project.setProjectName(value);break;
-					case PROJECT_CONTENT:project.setProjectContent(value);break;
-					case PROJECT_TIME:project.setProjectTime(value);break;
-					default:break;
-				}
-			}
-			projectList.add(project);
-		}
-		return projectList;
+		String sql="insert into t_projintro values(uuid(),?,?,?,now())";
+		return execute(sql, paramList);
 	}
 
+	@Override
+	public int doUpdate(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="update t_projintro set proj_pic=?,proj_name=?,"
+				+ "proj_content proj_time=now() where proj_id=?";
+		return execute(sql, paramList);
+	}
+
+	@Override
+	public int doDelete(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="delete from t_projintro where proj_id=?";
+		return execute(sql, paramList);
+	}
+
+	@Override
+	public List<Project> doSelect(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="select * from t_projintro order by proj_time "
+				+ "desc limit ?,?";
+		return getQueryList(sql, paramList);
+	}
+
+	@Override
+	public int doCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Project getProject(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="select * from t_projintro where proj_id=?";
+		return getQueryList(sql, paramList).get(0);
+	}
+
+	@Override
+	protected Project getModel(List<String> list) {
+		// TODO Auto-generated method stub
+		return new Project(list);
+	}
+	
 }

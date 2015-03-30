@@ -1,19 +1,13 @@
 package com.labweb.action;
 
+import com.labweb.dao.ILabDao;
 import com.labweb.dao.factory.DaoFactory;
-import com.labweb.model.Lab;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class LabAction extends ActionSupport{
+public class LabAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
-	private Lab labMap=null;
-	
-	public Lab getLabMap(){
-		return labMap;
-	}
-	
+	private ILabDao labDao=DaoFactory.getLabDaoInstance();
 	public String execute(){
-		labMap=DaoFactory.getLabDaoInstance().getLabIntro();
+		resultMesg.put("result", labDao.doSelect(null));
 		return SUCCESS;
 	}
 }

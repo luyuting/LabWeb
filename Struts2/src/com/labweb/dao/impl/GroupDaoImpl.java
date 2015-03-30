@@ -1,39 +1,51 @@
 package com.labweb.dao.impl;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 import com.labweb.dao.IGroupDao;
 import com.labweb.model.Group;
 
-public class GroupDaoImpl extends TotalBaseDaoImpl implements IGroupDao{
-	
-	public GroupDaoImpl(){
-		doCreate(TABLE_GROUP);
-	}
-	
+public class GroupDaoImpl extends BaseDaoImpl<Group> implements IGroupDao{
+
 	@Override
-	public List<Group> getGroupIntro() {
+	public int doInsert(List<Object> paramList) {
 		// TODO Auto-generated method stub
-		List<Map<String,String>> totalGroup=getTotalList();
-		List<Group> groupList=new ArrayList<Group>();
-		for(Map<String,String> groupMap: totalGroup){
-			Iterator<Entry<String,String>> groupEntryIt=groupMap.entrySet().iterator();
-			Group group=new Group();
-			while(groupEntryIt.hasNext()){
-				Entry<String,String> groupEntry=groupEntryIt.next();
-				String value=groupEntry.getValue();
-				switch(groupEntry.getKey()){
-					case GROUP_ID:group.setGroupId(value);break;
-					case GROUP_PIC:group.setGroupPic(value);break;
-					case GROUP_NAME:group.setGroupName(value);break;
-					case GROUP_INTRO:group.setGroupIntro(value);break;
-					default:break;
-				}
-			}
-			groupList.add(group);
-		}
-		return groupList;
+		String sql="insert into t_group values(uuid(),?,?,?)";
+		return execute(sql, paramList);
 	}
 
+	@Override
+	public int doUpdate(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="update t_group set gro_pic=?,gro_name=?,gro_intro=?"
+				+ " where gro_id=?";
+		return execute(sql, paramList);
+	}
+
+	@Override
+	public int doDelete(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="delete from t_group where gro_id=?";
+		return execute(sql, paramList);
+	}
+
+	@Override
+	public List<Group> doSelect(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="select * from t_group";
+		return getQueryList(sql, paramList);
+	}
+
+	@Override
+	public int doCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected Group getModel(List<String> list) {
+		// TODO Auto-generated method stub
+		return new Group(list);
+	}
+	
 }

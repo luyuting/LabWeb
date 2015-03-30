@@ -1,6 +1,9 @@
 package com.labweb.model;
 
-public class Project {
+import java.util.List;
+
+public class Project extends BaseModel{
+	private static final long serialVersionUID = 1L;
 	private String projectId;
 	private String projectPic;
 	private String projectName;
@@ -50,11 +53,11 @@ public class Project {
 	public Project(){
 	}
 	
-	public Project(String projectId,String projectPic,String projectName,String projectContent,String projectTime){
-		this.projectId=projectId;
-		this.projectPic=projectPic;
-		this.projectName=projectName;
-		this.projectContent=projectContent;
-		this.projectTime=projectTime;
+	public Project(List<String> list){
+		this.projectId=list.get(0);
+		this.projectPic=list.get(1);
+		this.projectName=list.get(2);
+		this.projectContent=list.get(3);
+		this.projectTime=list.get(4);
 	}
 }

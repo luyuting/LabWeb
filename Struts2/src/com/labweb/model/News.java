@@ -1,6 +1,9 @@
 package com.labweb.model;
 
-public class News {
+import java.util.List;
+
+public class News extends BaseModel{
+	private static final long serialVersionUID = 1L;
 	private String newsId;
 	private String newsPic;
 	private String newsPicTitle;
@@ -76,14 +79,14 @@ public class News {
 	public News(){
 	}
 	
-	public News(String newsId,String newsPic,String newsPicTitle,String newsTitle,String newsAuthor,String newsContent,int newsReadNum,String newsTime){
-		this.newsId=newsId;
-		this.newsPic=newsPic;
-		this.newsPicTitle=newsPicTitle;
-		this.newsTitle=newsTitle;
-		this.newsAuthor=newsAuthor;
-		this.newsContent=newsContent;
-		this.newsReadNum=newsReadNum;
-		this.newsTime=newsTime;	
+	public News(List<String> list){
+		this.newsId=list.get(0);
+		this.newsPic=list.get(1);
+		this.newsPicTitle=list.get(2);
+		this.newsTitle=list.get(3);
+		this.newsAuthor=list.get(4);
+		this.newsContent=list.get(5);
+		this.newsReadNum=Integer.parseInt(list.get(6));
+		this.newsTime=list.get(7);	
 	}
 }

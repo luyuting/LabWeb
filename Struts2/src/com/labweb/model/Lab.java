@@ -1,6 +1,9 @@
 package com.labweb.model;
 
-public class Lab {
+import java.util.List;
+
+public class Lab extends BaseModel{
+	private static final long serialVersionUID = 1L;
 	private String labId;
 	private String labName;
 	private String labContent;
@@ -32,10 +35,10 @@ public class Lab {
 	public Lab(){
 	}
 	
-	public Lab(String labId,String labName,String labContent){
-		this.labId=labId;
-		this.labName=labName;
-		this.labContent=labContent;
+	public Lab(List<String> list){
+		this.labId=list.get(0);
+		this.labName=list.get(1);
+		this.labContent=list.get(2);
 	}
 	
 }

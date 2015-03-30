@@ -1,6 +1,9 @@
 package com.labweb.model;
 
-public class Admin {
+import java.util.List;
+
+public class Admin extends BaseModel{
+	private static final long serialVersionUID = 1L;
 	private String adminAccount;
 	private String adminPassword;
 	private String adminName;
@@ -32,9 +35,9 @@ public class Admin {
 	public Admin(){
 	}
 	
-	public Admin(String adminAccount,String adminPassword,String adminName){
-		this.adminAccount=adminAccount;
-		this.adminPassword=adminPassword;
-		this.adminName=adminName;
+	public Admin(List<String> list){
+		this.adminAccount=list.get(0);
+		this.adminPassword=list.get(1);
+		this.adminName=list.get(2);
 	}
 }

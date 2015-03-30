@@ -1,21 +1,20 @@
 package com.labweb.action;
 
-import java.util.*;
+import java.util.List;
 
+import com.labweb.dao.IGroupDao;
 import com.labweb.dao.factory.DaoFactory;
 import com.labweb.model.Group;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class GroupAction extends ActionSupport{
+public class GroupAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
-	private List<Group> groupList=null;
-	
-	public List<Group> getGroupList(){
-		return groupList;
-	}
+	private IGroupDao groupDao=DaoFactory.getGroupDaoInstance();
 	
 	public String execute(){
-		groupList=DaoFactory.getGroupDaoInstance().getGroupIntro();
+		List<Group> groupList=groupDao.doSelect(null);
+		resultMesg.clear();
+		resultMesg.put("result", groupList);
 		return SUCCESS;
 	}
+	
 }

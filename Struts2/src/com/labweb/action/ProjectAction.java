@@ -1,39 +1,40 @@
 package com.labweb.action;
 
-import java.util.*;
-
+import com.labweb.dao.IProjectDao;
 import com.labweb.dao.factory.DaoFactory;
 import com.labweb.model.Project;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class ProjectAction extends ActionSupport{
+public class ProjectAction extends PageBaseAction<Project>{
 	private static final long serialVersionUID = 1L;
-	private int pageIndex;
-	private int numPerPage=10;
-	private Map<String,Object> projectMap=new HashMap<String,Object>();
-	
-	public void setPageIndex(int pageIndex){
-		this.pageIndex=pageIndex;
+	private IProjectDao projectDao=DaoFactory.getProjectDaoInstance();
+
+	@Override
+	public String execute() {
+		// TODO Auto-generated method stub
+		this.setResultMesg(projectDao.doSelect(selectParamList()),
+				projectDao.doCount());
+		return SUCCESS;
 	}
-	
-	public int getPageIndex(){
-		return pageIndex;
+
+	@Override
+	public String update() {
+		// TODO Auto-generated method stub
+		String mesg="更新失败！";
+		if(projectDao.doUpdate(null)>0);
+			mesg="更新成功！";
+		resultMesg.put("mesg", mesg);
+		return SUCCESS;
 	}
-	
-	public Map<String,Object> getProjectMap(){
-		return projectMap;
+
+	@Override
+	public String insert() {
+		// TODO Auto-generated method stub
+		return SUCCESS;
 	}
-	
-	public String execute(){
-		List<Project> projectList=DaoFactory.getProjectDaoInstance().getPageProjectList(pageIndex,numPerPage);
-		int projectCount=DaoFactory.getProjectDaoInstance().getAcount();
-		int projectPage=projectCount/numPerPage;
-		if(projectCount%numPerPage!=0)
-			projectPage++;
-		projectMap.put("projectList", projectList);
-		projectMap.put("projectCount", projectCount);
-		projectMap.put("projectPage", projectPage);
-		projectMap.put("projectPageIndex", pageIndex);
+
+	@Override
+	public String delete() {
+		// TODO Auto-generated method stub
 		return SUCCESS;
 	}
 }

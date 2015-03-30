@@ -2,27 +2,15 @@ package com.labweb.action;
 
 import java.util.*;
 
+import com.labweb.dao.INewsDao;
 import com.labweb.dao.factory.DaoFactory;
 import com.labweb.model.News;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class NewsAction extends ActionSupport {
+public class NewsAction extends PageBaseAction<News> {
 	private static final long serialVersionUID = 1L;
-	private int pageIndex;
-	private int numPerPage=5;
+	private INewsDao newsDao=DaoFactory.getNewsDaoInstance();
 	
 	private News news=new News();
-			
-	private Map<String,Object> newsMap=new HashMap<String,Object>();
-	
-	public void setPageIndex(int pageIndex){
-		this.pageIndex=pageIndex;
-	}
-	
-	public int getPageIndex(){
-		return pageIndex;
-	}
-	
 	
 	public void setNewsPic(String newsPic){
 		this.news.setNewsPic(newsPic);
@@ -45,29 +33,26 @@ public class NewsAction extends ActionSupport {
 		this.news.setNewsContent(newsContent);
 	}
 	
-	public Map<String,Object> getNewsMap(){
-		return newsMap;
-	}
 	public String execute(){
-		List<News> newsList=DaoFactory.getNewsDaoInstance().getPageNewsList(pageIndex,numPerPage);
-		int newsCount=DaoFactory.getNewsDaoInstance().getAcount();
-		int newsPage=newsCount/numPerPage;
-		if(newsCount%numPerPage!=0)
-			newsPage++;
-		newsMap.put("newsList", newsList);
-		newsMap.put("newsCount", newsCount);
-		newsMap.put("newsPage", newsPage);
-		newsMap.put("newsPageIndex", pageIndex);
-		return SUCCESS;
+		
+		return SUCCESS;	
 	}
-	
-	public String write(){
-		DaoFactory.getNewsDaoInstance().writeNews(news);
-		return SUCCESS;
+
+	@Override
+	public String update() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	public String read(){
-		DaoFactory.getNewsDaoInstance().addReadNum(news.getNewsId());
-		return SUCCESS;
+
+	@Override
+	public String insert() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String delete() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

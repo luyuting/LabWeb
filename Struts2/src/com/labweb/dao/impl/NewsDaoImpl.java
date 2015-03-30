@@ -1,74 +1,61 @@
 package com.labweb.dao.impl;
 
 import java.util.*;
-import java.util.Map.Entry;
 
-import com.labweb.dao.*;
-import com.labweb.db.DatabaseUtil;
+import com.labweb.dao.INewsDao;
 import com.labweb.model.*;
 
-public class NewsDaoImpl extends PageBaseDaoImpl implements INewsDao{
-	
-	public NewsDaoImpl(){
-		doCreate(TABLE_NEWS,NEWS_TIME);
-	}
-	
+public class NewsDaoImpl extends BaseDaoImpl<News> implements INewsDao{
+
 	@Override
-	public boolean writeNews(News news) {
+	public int doInsert(List<Object> paramList) {
 		// TODO Auto-generated method stub
-		String addSql="insert into "+TABLE_NEWS+" values(uuid(),?,?,?,?,?,0,now())";
-		List<Object> paramList=new ArrayList<Object>();
-		paramList.add(news.getNewsPic());
-		paramList.add(news.getNewsPicTitle());
-		paramList.add(news.getNewsTitle());
-		paramList.add(news.getNewsAuthor());
-		paramList.add(news.getNewsContent());
-		return addRecord(addSql, paramList);
+		String sql="insert into t_news values(uuid,?,?,?,?,?,0,now())";
+		return execute(sql, paramList);
 	}
 
 	@Override
-	public boolean addReadNum(String newsId) {
+	public int doUpdate(List<Object> paramList) {
 		// TODO Auto-generated method stub
-		boolean result=false;
-		String addSql="update "+TABLE_NEWS+" set "+NEWS_READ_NUM+
-				"=1+"+NEWS_READ_NUM+" where "+NEWS_ID+"=?";
-		List<Object> paramList=new ArrayList<Object>();
-		paramList.add(newsId);
-		int insert=0;
-		try {
-			insert=DatabaseUtil.execute(addSql, paramList);
-		} catch (Exception e) {}
-		if(insert>0)
-			result=true;
-		return result;
+		String sql="update t_news set news_pic=?,news_pic=?,"
+				+ "news_pic_title,news_title=?,news_author=?,"
+				+ "news_content=? news_time=now() where news_id=?";
+		return execute(sql, paramList);
 	}
 
 	@Override
-	public List<News> getPageNewsList(int pageIndex,int numPerPage) {
+	public int doDelete(List<Object> paramList) {
 		// TODO Auto-generated method stub
-		List<Map<String, String>> pageNews=getPageMap(pageIndex, numPerPage);
-		List<News> newsList=new ArrayList<News>();
-		for(Map<String,String> newsMap: pageNews){
-			Iterator<Entry<String,String>> newsEntryIt=newsMap.entrySet().iterator();
-			News news=new News();
-			while(newsEntryIt.hasNext()){
-				Entry<String,String> newsEntry=newsEntryIt.next();
-				String value=newsEntry.getValue();
-				switch(newsEntry.getKey()){
-					case NEWS_ID:news.setNewsId(value);break;
-					case NEWS_PIC:news.setNewsPic(value);break;
-					case NEWS_PIC_TITLE:news.setNewsPicTitle(value);break;
-					case NEWS_TITLE:news.setNewsTitle(value);break;
-					case NEWS_AUTHOR:news.setNewsAuthor(value);break;
-					case NEWS_CONTENT:news.setNewsContent(value);break;
-					case NEWS_READ_NUM:news.setNewsReadNum(Integer.parseInt(value));break;
-					case NEWS_TIME:news.setNewsTime(value);break;
-					default:break;
-				}
-			}
-			newsList.add(news);
-		}
-		return newsList;
+		String sql="delete from t_news where news_id=?";
+		return execute(sql, paramList);
 	}
 
+	@Override
+	public List<News> doSelect(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="select * from t_news order by news_time desc limit ?,?";
+		return getQueryList(sql, paramList);
+	}
+
+	@Override
+	public int doCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public News getNews(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String numSql="update t_news set news_read_num=news_read_num+1"
+				+ " where news_id=?";
+		execute(numSql, paramList);
+		String sql="select * from t_news where news_id=?";
+		return getQueryList(sql, paramList).get(0);
+	}
+
+	@Override
+	protected News getModel(List<String> list) {
+		// TODO Auto-generated method stub
+		return new News(list);
+	}
 }

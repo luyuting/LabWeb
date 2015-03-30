@@ -1,6 +1,9 @@
 package com.labweb.model;
 
-public class Message {
+import java.util.List;
+
+public class Message extends BaseModel{
+	private static final long serialVersionUID = 1L;
 	private String mesgId;
 	private String mesgContent;
 	private String mesgTime;
@@ -32,9 +35,9 @@ public class Message {
 	public Message(){
 	}
 	
-	public Message(String mesgId,String mesgContent,String mesgTime){
-		this.mesgId=mesgId;
-		this.mesgContent=mesgContent;
-		this.mesgTime=mesgTime;
+	public Message(List<String> list){
+		this.mesgId=list.get(0);
+		this.mesgContent=list.get(1);
+		this.mesgTime=list.get(2);
 	}
 }

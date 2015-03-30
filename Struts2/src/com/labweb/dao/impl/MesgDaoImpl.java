@@ -1,47 +1,59 @@
 package com.labweb.dao.impl;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 import com.labweb.dao.IMesgDao;
 import com.labweb.model.Message;
 
-public class MesgDaoImpl extends PageBaseDaoImpl implements IMesgDao{
-	
-	public MesgDaoImpl(){
-		doCreate(TABLE_MESG,MESG_TIME);
-	}
-	
+public class MesgDaoImpl extends BaseDaoImpl<Message> implements IMesgDao{
+
 	@Override
-	public boolean writeMesg(Message mesg) {
+	public int doInsert(List<Object> paramList) {
 		// TODO Auto-generated method stub
-		String addSql="insert into "+TABLE_MESG+" values(uuid(),?,now())";
-		List<Object> paramList=new ArrayList<Object>();
-		paramList.add(mesg.getMesgContent());
-		return addRecord(addSql, paramList);
-	}
-	
-	@Override
-	public List<Message> getPageMesgList(int pageIndex, int numPerPage) {
-		// TODO Auto-generated method stub
-		List<Map<String, String>> pageMesg=getPageMap(pageIndex, numPerPage);
-		List<Message> mesgList=new ArrayList<Message>();
-		for(Map<String,String> mesgMap:pageMesg){
-			Iterator<Entry<String,String>> mesgEntryIt=mesgMap.entrySet().iterator();
-			Message mesg=new Message();
-			while(mesgEntryIt.hasNext()){
-				Entry<String,String> mesgEntry=mesgEntryIt.next();
-				String value=mesgEntry.getValue();
-				switch(mesgEntry.getKey()){
-					case MESG_ID:mesg.setMesgId(value);break;
-					case MESG_CONTENT:mesg.setMesgContent(value);break;
-					case MESG_TIME:mesg.setMesgTime(value);break;
-					default:break;
-				}
-			}
-			mesgList.add(mesg);
-		}
-		return mesgList;
+		String sql="insert into t_mesg values(uuid,?,now())";
+		return execute(sql, paramList);
 	}
 
+	@Override
+	public int doUpdate(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="update t_mesg mesg_content=?,mesg_time=now() "
+				+ "where mesg_id=?";			
+		return execute(sql, paramList);
+	}
+
+	@Override
+	public int doDelete(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="delete from t_mesg where mesg_id=?";
+		return execute(sql, paramList);
+	}
+
+	@Override
+	public List<Message> doSelect(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="select * from t_mesg order by mesg_time desc "
+				+ "limit ?,?";
+		return getQueryList(sql, paramList);
+	}
+
+	@Override
+	public int doCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Message getMesg(List<Object> paramList) {
+		// TODO Auto-generated method stub
+		String sql="select * from t_mesg where mesg_id=?";
+		return getQueryList(sql, paramList).get(0);
+	}
+
+	@Override
+	protected Message getModel(List<String> list) {
+		// TODO Auto-generated method stub
+		return new Message(list);
+	}
+	
 }
