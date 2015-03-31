@@ -39,7 +39,8 @@ public class GroupDaoImpl extends BaseDaoImpl<Group> implements IGroupDao{
 	@Override
 	public int doCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		String sql="select count(*) from t_group";
+		return getCount(sql, null);
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public abstract class PageBaseAction<T> extends BaseAction{
 		return paramList;
 	}
 	
-	public void setResultMesg(List<T> list,int Count){
+	protected void setResultMesg(List<T> list,int Count){
 		int pageCount=Count/pageIndex;
 		if(Count%pageIndex!=0)
 			pageCount++;
@@ -37,8 +37,4 @@ public abstract class PageBaseAction<T> extends BaseAction{
 		resultMesg.put("pageCount", pageCount);
 	}
 	
-	public abstract String execute();
-	public abstract String update();
-	public abstract String insert();
-	public abstract String delete();
 }

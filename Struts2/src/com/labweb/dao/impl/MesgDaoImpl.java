@@ -40,7 +40,8 @@ public class MesgDaoImpl extends BaseDaoImpl<Message> implements IMesgDao{
 	@Override
 	public int doCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		String sql="select count(*) from t_mesg";
+		return getCount(sql, null);
 	}
 
 	@Override

@@ -1,5 +1,8 @@
 package com.labweb.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.labweb.dao.IProjectDao;
 import com.labweb.dao.factory.DaoFactory;
 import com.labweb.model.Project;
@@ -7,7 +10,28 @@ import com.labweb.model.Project;
 public class ProjectAction extends PageBaseAction<Project>{
 	private static final long serialVersionUID = 1L;
 	private IProjectDao projectDao=DaoFactory.getProjectDaoInstance();
+	private Project project=new Project();
+	
+	public ProjectAction(){
+		setNumPerPage(10);
+	}
+	
+	public void setProjcetId(String projectId){
+		this.project.setProjectId(projectId);
+	}
+	
+	public void setProjcetPic(String projectPic){
+		this.project.setProjectPic(projectPic);
+	}
+	
+	public void setProjcetName(String projectName){
+		this.project.setProjectName(projectName);
+	}
 
+	public void setProjcetContent(String projectContent){
+		this.project.setProjectContent(projectContent);
+	}
+	
 	@Override
 	public String execute() {
 		// TODO Auto-generated method stub
@@ -19,22 +43,32 @@ public class ProjectAction extends PageBaseAction<Project>{
 	@Override
 	public String update() {
 		// TODO Auto-generated method stub
-		String mesg="更新失败！";
-		if(projectDao.doUpdate(null)>0);
-			mesg="更新成功！";
-		resultMesg.put("mesg", mesg);
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(project.getProjectPic());
+		paramList.add(project.getProjectName());
+		paramList.add(project.getProjectContent());
+		paramList.add(project.getProjectId());
+		setResultMesg(projectDao.doUpdate(paramList), "更新");
 		return SUCCESS;
 	}
 
 	@Override
 	public String insert() {
 		// TODO Auto-generated method stub
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(project.getProjectPic());
+		paramList.add(project.getProjectName());
+		paramList.add(project.getProjectContent());
+		setResultMesg(projectDao.doInsert(paramList), "插入");
 		return SUCCESS;
 	}
 
 	@Override
 	public String delete() {
 		// TODO Auto-generated method stub
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(project.getProjectId());
+		setResultMesg(projectDao.doDelete(paramList), "删除");
 		return SUCCESS;
 	}
 }

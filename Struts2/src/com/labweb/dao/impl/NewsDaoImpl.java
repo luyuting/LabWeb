@@ -40,7 +40,8 @@ public class NewsDaoImpl extends BaseDaoImpl<News> implements INewsDao{
 	@Override
 	public int doCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		String sql="select count(*) from t_news";
+		return getCount(sql, null);
 	}
 
 	@Override

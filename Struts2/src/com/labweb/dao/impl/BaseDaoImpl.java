@@ -38,14 +38,36 @@ public abstract class BaseDaoImpl<T>{
 		return result;
 	}
 	
+	protected int getCount(String sql,List<Object> paramList){
+		if(sql==null||sql.trim().equals("")){
+			logger.info("parameter is valid!");
+			return -1;
+		}
+		int result=0;
+		try{
+			conn=BaseDaoImpl.getConnection();
+			pstmt=BaseDaoImpl.getPreparedStatement(conn,sql);
+			setPreparedStatementParam(pstmt,paramList);
+			if(pstmt==null)
+				return -2;
+			rs=BaseDaoImpl.getResultSet(pstmt);
+			result=rs.getInt(0);
+		}catch(Exception e){
+			logger.info(e.getMessage());
+			//throw new Exception(e);
+		}finally{
+			BaseDaoImpl.closeStatement(pstmt);
+			BaseDaoImpl.closeConn(conn);
+			BaseDaoImpl.closeResultSet(rs);
+		}
+		return result;
+	}
+	
 	protected List<T> getQueryList(String sql,List<Object> paramList){
 		if(sql==null||sql.trim().equals("")){
 			logger.info("parameter is valid!");
 			return null;
 		}
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
 		List<T> queryList=null;
 		try{
 			conn=BaseDaoImpl.getConnection();

@@ -9,8 +9,15 @@ import com.labweb.model.News;
 public class NewsAction extends PageBaseAction<News> {
 	private static final long serialVersionUID = 1L;
 	private INewsDao newsDao=DaoFactory.getNewsDaoInstance();
-	
 	private News news=new News();
+	
+	public NewsAction(){
+		setNumPerPage(10);
+	}
+	
+	public void setNewsId(String newsId){
+		this.news.setNewsId(newsId);
+	}
 	
 	public void setNewsPic(String newsPic){
 		this.news.setNewsPic(newsPic);
@@ -24,7 +31,6 @@ public class NewsAction extends PageBaseAction<News> {
 		this.news.setNewsTitle(newsTitle);
 	}
 	
-	
 	public void setNewsAuthor(String newsAuthor){
 		this.news.setNewsAuthor(newsAuthor);
 	}
@@ -34,25 +40,43 @@ public class NewsAction extends PageBaseAction<News> {
 	}
 	
 	public String execute(){
-		
+		this.setResultMesg(newsDao.doSelect(selectParamList()), newsDao.doCount());
 		return SUCCESS;	
 	}
 
 	@Override
 	public String update() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(news.getNewsPic());
+		paramList.add(news.getNewsPicTitle());
+		paramList.add(news.getNewsTitle());
+		paramList.add(news.getNewsAuthor());
+		paramList.add(news.getNewsContent());
+		paramList.add(news.getNewsId());
+		setResultMesg(newsDao.doUpdate(paramList), "¸üÐÂ");
+		return SUCCESS;
 	}
 
 	@Override
 	public String insert() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(news.getNewsPic());
+		paramList.add(news.getNewsPicTitle());
+		paramList.add(news.getNewsTitle());
+		paramList.add(news.getNewsAuthor());
+		paramList.add(news.getNewsContent());
+		setResultMesg(newsDao.doInsert(paramList), "²åÈë");
+		return SUCCESS;
 	}
 
 	@Override
 	public String delete() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(news.getNewsId());
+		setResultMesg(newsDao.doDelete(paramList), "É¾³ý");
+		return SUCCESS;
 	}
 }

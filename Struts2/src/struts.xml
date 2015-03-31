@@ -4,55 +4,10 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts> 
 	<package name="json" namespace="/json" extends="json-default">
-		<action name="news_execute" class="com.labweb.action.NewsAction" method="execute">
-			<result type="json"><param name="includeProperties">newsMap.*</param></result>
+		<action name="*_*" class="com.labweb.action.NewsAction" method="{2}">
+			<result type="json"><param name="root">resultMesg</param></result>
 		</action>
-		<action name="mesg_execute" class="com.labweb.action.MesgAction" method="execute">
-			<result type="json"><param name="includeProperties">mesgMap.*</param></result>
-		</action>
-		<action name="project_execute" class="com.labweb.action.ProjectAction" method="execute">
-			<result type="json"><param name="includeProperties">projectMap.*</param></result>
-		</action>
-		<action name="lab_execute" class="com.labweb.action.LabAction" method="execute">
-			<result type="json"><param name="includeProperties">labMap.*</param></result>
-		</action>
-		<action name="group_execute" class="com.labweb.action.GroupAction" method="execute">
-			<result type="json"><param name="includeProperties">groupList.*</param></result>
-		</action>
-	</package>
-	<package name="operate" namespace="/operate" extends="struts-default">
-		<action name="news_write" class="com.labweb.action.NewsAction" method="write">
-			<result>/test.jsp</result>
-		</action>
-		<action name="news_read" class="com.labweb.action.NewsAction" method="read">
-			<result>/test.jsp</result>
-		</action>
-		
-	</package>
-	<!--
-	  
-    <package name="user" namespace="/user" extends="struts-default">
-        <action name="admin_*" class="com.zml.action.AdminAction" method="{1}">
-            <result name="success" type="redirect">/success.jsp</result>
-            <result name="failure">/login.jsp</result>
-            <result name="input">/login.jsp</result>
-        </action>
-        
-        <action name="login" class="com.zml.action.LoginAction">
-			<result name="success">/main.jsp</result>
-			<result name="error">/login.jsp</result>
-		</action>
-    </package>
-    <package name="product" namespace="/product" extends="struts-default">
-        <action name="products" class="com.zml.action.ProductsAction">
-			<result name="success"> products.jsp</result>
-		</action>
-    </package>
-    
-    -->
-    
-    
-    
+	</package>  
 <!--     <package name="user" namespace="/user" extends="struts-default"> -->
         <!-- 配置拦截器 -->
 <!--         <interceptors> -->
