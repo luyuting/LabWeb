@@ -51,7 +51,8 @@ public abstract class BaseDaoImpl<T>{
 			if(pstmt==null)
 				return -2;
 			rs=BaseDaoImpl.getResultSet(pstmt);
-			result=rs.getInt(0);
+			if(rs.next())
+				result=rs.getInt(1);
 		}catch(Exception e){
 			logger.info(e.getMessage());
 			//throw new Exception(e);
