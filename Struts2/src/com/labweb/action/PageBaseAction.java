@@ -27,8 +27,8 @@ public abstract class PageBaseAction<T> extends BaseAction{
 	}
 	
 	protected void setResultMesg(List<T> list,int Count){
-		int pageCount=Count/pageIndex;
-		if(Count%pageIndex!=0)
+		int pageCount=Count/numPerPage;
+		if(Count%numPerPage!=0)
 			pageCount++;
 		resultMesg.clear();
 		resultMesg.put("resultList", list);
