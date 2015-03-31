@@ -10,7 +10,7 @@ public class NewsDaoImpl extends BaseDaoImpl<News> implements INewsDao{
 	@Override
 	public int doInsert(List<Object> paramList) {
 		// TODO Auto-generated method stub
-		String sql="insert into t_news values(uuid,?,?,?,?,?,0,now())";
+		String sql="insert into t_news values(uuid(),?,?,?,?,?,0,now())";
 		return execute(sql, paramList);
 	}
 

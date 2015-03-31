@@ -10,7 +10,7 @@ public class MesgDaoImpl extends BaseDaoImpl<Message> implements IMesgDao{
 	@Override
 	public int doInsert(List<Object> paramList) {
 		// TODO Auto-generated method stub
-		String sql="insert into t_mesg values(uuid,?,now())";
+		String sql="insert into t_mesg values(uuid(),?,now())";
 		return execute(sql, paramList);
 	}
 
