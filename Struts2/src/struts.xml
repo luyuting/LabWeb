@@ -4,7 +4,19 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts> 
 	<package name="json" namespace="/json" extends="json-default">
-		<action name="*_*" class="com.labweb.action.NewsAction" method="{2}">
+		<action name="news_*" class="com.labweb.action.NewsAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+		<action name="mesg_*" class="com.labweb.action.MesgAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+		<action name="project_*" class="com.labweb.action.ProjectAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+		<action name="group_*" class="com.labweb.action.GroupAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+		<action name="lab_*" class="com.labweb.action.LabAction" method="{1}">
 			<result type="json"><param name="root">resultMesg</param></result>
 		</action>
 	</package>  
