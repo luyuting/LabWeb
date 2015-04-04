@@ -71,4 +71,14 @@ public class ProjectAction extends PageBaseAction<Project>{
 		setResultMesg(projectDao.doDelete(paramList), "É¾³ý");
 		return SUCCESS;
 	}
+
+	@Override
+	protected String getById() {
+		// TODO Auto-generated method stub
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(project.getProjectId());
+		resultMesg.clear();
+		resultMesg.put("result", projectDao.getProject(paramList));
+		return SUCCESS;
+	}
 }

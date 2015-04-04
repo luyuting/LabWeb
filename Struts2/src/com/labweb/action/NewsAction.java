@@ -79,4 +79,14 @@ public class NewsAction extends PageBaseAction<News> {
 		setResultMesg(newsDao.doDelete(paramList), "É¾³ý");
 		return SUCCESS;
 	}
+
+	@Override
+	protected String getById() {
+		// TODO Auto-generated method stub
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(news.getNewsId());
+		resultMesg.clear();
+		resultMesg.put("result", newsDao.getNews(paramList));
+		return SUCCESS;
+	}
 }

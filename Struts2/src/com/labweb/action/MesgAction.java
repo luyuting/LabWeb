@@ -27,7 +27,7 @@ public class MesgAction extends PageBaseAction<Message>{
 	public String execute() {
 		// TODO Auto-generated method stub
 		this.setResultMesg(mesgDao.doSelect(selectParamList()), mesgDao.doCount());
-		return null;
+		return SUCCESS;
 	}
 
 	@Override
@@ -56,5 +56,15 @@ public class MesgAction extends PageBaseAction<Message>{
 		paramList.add(mesg.getMesgId());
 		setResultMesg(mesgDao.doDelete(paramList), "É¾³ý");
 		return SUCCESS;
+	}
+
+	@Override
+	protected String getById() {
+		// TODO Auto-generated method stub
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(mesg.getMesgId());
+		resultMesg.clear();
+		resultMesg.put("result", mesgDao.getMesg(paramList));
+		return null;
 	}
 }
