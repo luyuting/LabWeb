@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.labweb.dao.IGroupDao;
-import com.labweb.dao.factory.DaoFactory;
+import com.labweb.dao.impl.GroupDaoImpl;
 import com.labweb.model.Group;
 
 public class GroupAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
-	private IGroupDao groupDao=DaoFactory.getGroupDaoInstance();
+	private IGroupDao groupDao=null;
 	private Group group=new Group();
+	
+	public GroupAction(){
+		super(GroupDaoImpl.class);
+		groupDao=(GroupDaoImpl)dao;
+	}
 	
 	public void setGroupId(String groupId){
 		this.group.setGroupId(groupId);

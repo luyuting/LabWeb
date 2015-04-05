@@ -8,9 +8,7 @@
 <script>
 		function showNews(){
 			var xmlHttp=new XMLHttpRequest();
-			var url="json/news_insert.action?newsPic='111'&newsPicTitle='222'"
-					+"&newsTitle='333'&newsAuthor='444'&newsContent='555'";
-			url.replace("'","\'");
+			var url="json/news_execute.action?pageIndex=1";
 			xmlHttp.open("GET",url,true);
 			xmlHttp.setRequestHeader("Cache-Control","no-cache");
 			xmlHttp.onreadystatechange=function(){
@@ -32,7 +30,7 @@
 	<form name="newsForm">
 	<h3>欢迎查询</h3>
 		<input type="button" value="查询" onclick="showNews()">	
-	<div id="resultDiv">yg </div>
+	<div id="resultDiv"></div>
 </form>
 </body>
 </html>

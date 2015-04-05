@@ -158,8 +158,8 @@ public abstract class BaseDaoImpl<T>{
 		ResultSetMetaData rsMetaData=rs.getMetaData();
 		int columnCount=rsMetaData.getColumnCount();
 		List<T> objList=new ArrayList<T>();
-		List<String> list=new ArrayList<String>();
 		while(rs.next()){
+			List<String> list=new ArrayList<String>();
 			for(int i=0;i<columnCount;i++)
 				list.add(rs.getString(i+1));
 			objList.add(getModel(list));

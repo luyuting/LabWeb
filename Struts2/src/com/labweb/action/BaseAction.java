@@ -2,10 +2,17 @@ package com.labweb.action;
 
 import java.util.*;
 
+import com.labweb.dao.factory.DaoFactory;
 import com.opensymphony.xwork2.ActionSupport;
 
 public abstract class BaseAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
+	protected Object dao=null;
+	
+	public BaseAction(Class<?> daoClass){
+		this.dao=DaoFactory.getDaoInstance(daoClass);
+	}
+	
 	public Map<String,Object> resultMesg=new HashMap<String,Object>();
 	
 	public void setResultMesg(Map<String,Object> resultMesg){

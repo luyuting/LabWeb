@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.labweb.dao.ILabDao;
-import com.labweb.dao.factory.DaoFactory;
+import com.labweb.dao.impl.LabDaoImpl;
 import com.labweb.model.Lab;
 
 public class LabAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
-	private ILabDao labDao=DaoFactory.getLabDaoInstance();
+	private ILabDao labDao=null;
 	private Lab lab=new Lab();
+	
+	public LabAction(){
+		super(LabDaoImpl.class);
+		labDao=(LabDaoImpl)dao;
+	}
 	
 	public void setLabId(String labId){
 		lab.setLabId(labId);

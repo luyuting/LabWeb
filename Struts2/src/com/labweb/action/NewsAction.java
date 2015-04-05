@@ -3,16 +3,17 @@ package com.labweb.action;
 import java.util.*;
 
 import com.labweb.dao.INewsDao;
-import com.labweb.dao.factory.DaoFactory;
+import com.labweb.dao.impl.NewsDaoImpl;
 import com.labweb.model.News;
 
 public class NewsAction extends PageBaseAction<News> {
 	private static final long serialVersionUID = 1L;
-	private INewsDao newsDao=DaoFactory.getNewsDaoInstance();
+	private INewsDao newsDao=null;
 	private News news=new News();
 	
 	public NewsAction(){
-		super(10);
+		super(NewsDaoImpl.class,10);
+		newsDao=(NewsDaoImpl)dao;
 	}
 	
 	public void setNewsId(String newsId){

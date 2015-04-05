@@ -7,7 +7,8 @@ public abstract class PageBaseAction<T> extends BaseAction{
 	protected int pageIndex;
 	protected int numPerPage;
 	
-	public PageBaseAction(int numPerPage){
+	public PageBaseAction(Class<?> daoClass,int numPerPage){
+		super(daoClass);
 		setNumPerPage(numPerPage);
 	}
 	

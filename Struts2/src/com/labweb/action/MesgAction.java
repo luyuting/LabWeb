@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.labweb.dao.IMesgDao;
-import com.labweb.dao.factory.DaoFactory;
+import com.labweb.dao.impl.MesgDaoImpl;
 import com.labweb.model.Message;
 
 public class MesgAction extends PageBaseAction<Message>{
 	private static final long serialVersionUID = 1L;
-	private IMesgDao mesgDao=DaoFactory.getMesgDaoInstance();
+	private IMesgDao mesgDao=null;
 	private Message mesg=new Message();
 	
 	public MesgAction(){
-		super(15);
+		super(MesgDaoImpl.class,15);
+		mesgDao=(MesgDaoImpl)dao;
 	}
 	
 	public void setMesgId(String mesgId){

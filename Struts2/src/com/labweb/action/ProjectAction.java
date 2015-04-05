@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.labweb.dao.IProjectDao;
-import com.labweb.dao.factory.DaoFactory;
+import com.labweb.dao.impl.ProjectDaoImpl;
 import com.labweb.model.Project;
 
 public class ProjectAction extends PageBaseAction<Project>{
 	private static final long serialVersionUID = 1L;
-	private IProjectDao projectDao=DaoFactory.getProjectDaoInstance();
+	private IProjectDao projectDao=null;
 	private Project project=new Project();
 	
 	public ProjectAction(){
-		super(10);
+		super(ProjectDaoImpl.class,10);
+		projectDao=(ProjectDaoImpl)dao;
 	}
 	
 	public void setProjcetId(String projectId){
