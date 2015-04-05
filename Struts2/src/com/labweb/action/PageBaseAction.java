@@ -7,8 +7,8 @@ public abstract class PageBaseAction<T> extends BaseAction{
 	protected int pageIndex;
 	protected int numPerPage;
 	
-	public PageBaseAction(){
-		setNumPerPage(10);
+	public PageBaseAction(int numPerPage){
+		setNumPerPage(numPerPage);
 	}
 	
 	public void setPageIndex(int pageIndex){

@@ -13,7 +13,7 @@ public class ProjectAction extends PageBaseAction<Project>{
 	private Project project=new Project();
 	
 	public ProjectAction(){
-		setNumPerPage(10);
+		super(10);
 	}
 	
 	public void setProjcetId(String projectId){

@@ -12,7 +12,7 @@ public class NewsAction extends PageBaseAction<News> {
 	private News news=new News();
 	
 	public NewsAction(){
-		setNumPerPage(10);
+		super(10);
 	}
 	
 	public void setNewsId(String newsId){

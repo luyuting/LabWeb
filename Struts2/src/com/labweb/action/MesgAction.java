@@ -13,7 +13,7 @@ public class MesgAction extends PageBaseAction<Message>{
 	private Message mesg=new Message();
 	
 	public MesgAction(){
-		setNumPerPage(15);
+		super(15);
 	}
 	
 	public void setMesgId(String mesgId){
