@@ -52,7 +52,7 @@ public class LabAction extends BaseAction{
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(lab.getLabName());
 		paramList.add(lab.getLabContent());
-		setResultMesg(labDao.doUpdate(paramList), "²åÈë");
+		setResultMesg(labDao.doInsert(paramList), "²åÈë");
 		return SUCCESS;
 	}
 	@Override
@@ -61,7 +61,7 @@ public class LabAction extends BaseAction{
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(lab.getLabName());
 		paramList.add(lab.getLabContent());
-		setResultMesg(labDao.doUpdate(paramList), "É¾³ý");
+		setResultMesg(labDao.doDelete(paramList), "É¾³ý");
 		return SUCCESS;
 	}
 }
