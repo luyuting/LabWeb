@@ -17,19 +17,19 @@ public class ProjectAction extends PageBaseAction<Project>{
 		projectDao=(ProjectDaoImpl)dao;
 	}
 	
-	public void setProjcetId(String projectId){
+	public void setProjectId(String projectId){
 		this.project.setProjectId(projectId);
 	}
 	
-	public void setProjcetPic(String projectPic){
+	public void setProjectPic(String projectPic){
 		this.project.setProjectPic(projectPic);
 	}
 	
-	public void setProjcetName(String projectName){
+	public void setProjectName(String projectName){
 		this.project.setProjectName(projectName);
 	}
 
-	public void setProjcetContent(String projectContent){
+	public void setProjectContent(String projectContent){
 		this.project.setProjectContent(projectContent);
 	}
 	
