@@ -82,7 +82,7 @@ public class NewsAction extends PageBaseAction<News> {
 	}
 
 	@Override
-	protected String getById() {
+	public String getById() {
 		// TODO Auto-generated method stub
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(news.getNewsId());

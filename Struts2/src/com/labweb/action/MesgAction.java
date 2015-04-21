@@ -60,12 +60,12 @@ public class MesgAction extends PageBaseAction<Message>{
 	}
 
 	@Override
-	protected String getById() {
+	public String getById() {
 		// TODO Auto-generated method stub
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(mesg.getMesgId());
 		resultMesg.clear();
 		resultMesg.put("result", mesgDao.getMesg(paramList));
-		return null;
+		return SUCCESS;
 	}
 }

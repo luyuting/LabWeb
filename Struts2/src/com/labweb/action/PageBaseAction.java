@@ -38,5 +38,5 @@ public abstract class PageBaseAction<T> extends BaseAction{
 		resultMesg.put("pageCount", pageCount);
 	}
 	
-	protected abstract String getById();
+	public abstract String getById();
 }

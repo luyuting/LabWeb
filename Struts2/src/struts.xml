@@ -19,6 +19,9 @@
 		<action name="lab_*" class="com.labweb.action.LabAction" method="{1}">
 			<result type="json"><param name="root">resultMesg</param></result>
 		</action>
+		<action name="user_*" class="com.labweb.action.UserAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
 	</package>  
 <!--     <package name="user" namespace="/user" extends="struts-default"> -->
         <!-- 配置拦截器 -->
