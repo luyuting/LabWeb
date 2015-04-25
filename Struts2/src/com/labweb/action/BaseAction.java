@@ -15,12 +15,13 @@ public abstract class BaseAction extends ActionSupport{
 	
 	public Map<String,Object> resultMesg=new HashMap<String,Object>();
 	
-	public void setResultMesg(Map<String,Object> resultMesg){
-		this.resultMesg=resultMesg;
-	}
-	
 	public Map<String,Object> getResultMesg(){
 		return resultMesg;
+	}
+	
+	protected void setResultMesg(Object obj){
+		resultMesg.clear();
+		resultMesg.put("result", obj);
 	}
 	
 	protected void setResultMesg(int resultNum,String type){

@@ -32,7 +32,7 @@ public class LabAction extends BaseAction{
 	@Override
 	public String execute(){
 		// TODO Auto-generated method stub
-		resultMesg.put("result", labDao.doSelect(null));
+		setResultMesg(labDao.doSelect(null));
 		return SUCCESS;
 	}
 	

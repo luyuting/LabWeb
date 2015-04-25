@@ -64,8 +64,7 @@ public class MesgAction extends PageBaseAction<Message>{
 		// TODO Auto-generated method stub
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(mesg.getMesgId());
-		resultMesg.clear();
-		resultMesg.put("result", mesgDao.getMesg(paramList));
+		setResultMesg(mesgDao.getMesg(paramList));
 		return SUCCESS;
 	}
 }

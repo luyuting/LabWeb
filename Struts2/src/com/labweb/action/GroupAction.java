@@ -36,8 +36,7 @@ public class GroupAction extends BaseAction{
 	@Override
 	public String execute(){
 		// TODO Auto-generated method stub
-		resultMesg.clear();
-		resultMesg.put("result", groupDao.doSelect(null));
+		setResultMesg(groupDao.doSelect(null));
 		return SUCCESS;
 	}
 

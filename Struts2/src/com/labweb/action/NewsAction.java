@@ -86,8 +86,7 @@ public class NewsAction extends PageBaseAction<News> {
 		// TODO Auto-generated method stub
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(news.getNewsId());
-		resultMesg.clear();
-		resultMesg.put("result", newsDao.getNews(paramList));
+		setResultMesg(newsDao.getNews(paramList));
 		return SUCCESS;
 	}
 }

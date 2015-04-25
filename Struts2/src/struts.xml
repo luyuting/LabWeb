@@ -22,22 +22,15 @@
 		<action name="user_*" class="com.labweb.action.UserAction" method="{1}">
 			<result type="json"><param name="root">resultMesg</param></result>
 		</action>
-	</package>  
-<!--     <package name="user" namespace="/user" extends="struts-default"> -->
-        <!-- 配置拦截器 -->
-<!--         <interceptors> -->
-            <!-- 验证用户登录的拦截器 -->
-<!--             <interceptor name="loginInterceptor" class="com.zml.action.interceptor.UserLoginInterceptor"/> -->
-<!--             <interceptor-stack name="adminDefaultStack"> -->
-<!--                 <interceptor-ref name="loginInterceptor"/> -->
-<!--                 <interceptor-ref name="defaultStack"/> -->
-<!--             </interceptor-stack> -->
-<!--         </interceptors> -->
-<!--         <action name="admin_*" class="com.zml.action.AdminAction" method="{1}"> -->
-<!--             <result name="success" type="redirect">/success.jsp</result> -->
-<!--             <result name="failure">/login.jsp</result> -->
-<!--             <result name="input">/login.jsp</result> -->
-<!--             <interceptor-ref name="adminDefaultStack"/> -->
-<!--         </action> -->
-<!--     </package> -->
+		<action name="file_*" class="com.labweb.action.FileAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+	</package> 
+	<package name="file" extends="struts-default">
+		<action name="fileUpload" class="com.labweb.action.FileAction" method="insert">
+			<result name="success">/test.jsp</result>
+			<result name="input">/test.jsp</result>
+			<param name="targetFileDir">/upload</param>
+		</action>
+	</package>
 </struts>

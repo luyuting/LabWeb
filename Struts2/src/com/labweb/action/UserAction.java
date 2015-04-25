@@ -90,8 +90,7 @@ public class UserAction extends PageBaseAction<User>{
 		// TODO Auto-generated method stub
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(user.getUserId());
-		resultMesg.clear();
-		resultMesg.put("result", userDao.getUser(paramList));
+		setResultMesg(userDao.getUser(paramList));
 		return SUCCESS;
 	}
 	

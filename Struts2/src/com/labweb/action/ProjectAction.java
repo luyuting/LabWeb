@@ -78,8 +78,7 @@ public class ProjectAction extends PageBaseAction<Project>{
 		// TODO Auto-generated method stub
 		List<Object> paramList=new ArrayList<Object>();
 		paramList.add(project.getProjectId());
-		resultMesg.clear();
-		resultMesg.put("result", projectDao.getProject(paramList));
+		setResultMesg(projectDao.getProject(paramList));
 		return SUCCESS;
 	}
 }
