@@ -28,6 +28,6 @@
 <body>
 	
 </body>
-	<div id="fileDiv"><a href="fileDownload.action?uploadFile.filePath=/upload/Messages.php&amp;uploadFile.fileName=Messages.php">Messages.php</a></div>
+	<div id="fileDiv"></div>
 	<script>getDownloadList();</script>
 </html>
