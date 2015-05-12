@@ -10,20 +10,21 @@ import com.labweb.model.Message;
 public class MesgAction extends PageBaseAction<Message>{
 	private static final long serialVersionUID = 1L;
 	private IMesgDao mesgDao=null;
-	private Message mesg=new Message();
+	private Message mesg;
 	
 	public MesgAction(){
 		super(MesgDaoImpl.class,15);
 		mesgDao=(MesgDaoImpl)dao;
 	}
 	
-	public void setMesgId(String mesgId){
-		this.mesg.setMesgId(mesgId);
+	public void setMesg(Message mesg){
+		this.mesg=mesg;
 	}
 	
-	public void setMesgContent(String mesgContent){
-		this.mesg.setMesgContent(mesgContent);
+	public Message getMesg(){
+		return mesg;
 	}
+	
 	@Override
 	public String execute() {
 		// TODO Auto-generated method stub

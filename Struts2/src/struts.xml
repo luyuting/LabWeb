@@ -32,5 +32,12 @@
 			<result name="input">/test.jsp</result>
 			<param name="targetFileDir">/upload</param>
 		</action>
+		<action name="fileDownload" class="com.labweb.action.FileAction" method="download">
+			<result name="success" type="stream">
+				<param name="contentType"></param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${uploadFile.fileName}</param>
+			</result>
+		</action>
 	</package>
 </struts>

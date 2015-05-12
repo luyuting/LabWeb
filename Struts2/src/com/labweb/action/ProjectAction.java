@@ -10,27 +10,19 @@ import com.labweb.model.Project;
 public class ProjectAction extends PageBaseAction<Project>{
 	private static final long serialVersionUID = 1L;
 	private IProjectDao projectDao=null;
-	private Project project=new Project();
+	private Project project;
 	
 	public ProjectAction(){
 		super(ProjectDaoImpl.class,10);
 		projectDao=(ProjectDaoImpl)dao;
 	}
 	
-	public void setProjectId(String projectId){
-		this.project.setProjectId(projectId);
+	public void setProject(Project project){
+		this.project=project;
 	}
 	
-	public void setProjectPic(String projectPic){
-		this.project.setProjectPic(projectPic);
-	}
-	
-	public void setProjectName(String projectName){
-		this.project.setProjectName(projectName);
-	}
-
-	public void setProjectContent(String projectContent){
-		this.project.setProjectContent(projectContent);
+	public Project getProject(){
+		return project;
 	}
 	
 	@Override

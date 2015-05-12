@@ -9,35 +9,18 @@ import com.labweb.model.News;
 public class NewsAction extends PageBaseAction<News> {
 	private static final long serialVersionUID = 1L;
 	private INewsDao newsDao=null;
-	private News news=new News();
+	private News news;
 	
 	public NewsAction(){
 		super(NewsDaoImpl.class,10);
 		newsDao=(NewsDaoImpl)dao;
 	}
-	
-	public void setNewsId(String newsId){
-		this.news.setNewsId(newsId);
+	public void setNews(News news){
+		this.news=news;
 	}
 	
-	public void setNewsPic(String newsPic){
-		this.news.setNewsPic(newsPic);
-	}
-	
-	public void setNewsPicTitle(String newsPicTitle){
-		this.news.setNewsPicTitle(newsPicTitle);
-	}
-	
-	public void setNewsTitle(String newsTitle){
-		this.news.setNewsTitle(newsTitle);
-	}
-	
-	public void setNewsAuthor(String newsAuthor){
-		this.news.setNewsAuthor(newsAuthor);
-	}
-	
-	public void setNewsContent(String newsContent){
-		this.news.setNewsContent(newsContent);
+	public News getNews(){
+		return news;
 	}
 	
 	public String execute(){

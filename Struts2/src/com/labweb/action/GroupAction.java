@@ -10,27 +10,19 @@ import com.labweb.model.Group;
 public class GroupAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	private IGroupDao groupDao=null;
-	private Group group=new Group();
+	private Group group;
 	
 	public GroupAction(){
 		super(GroupDaoImpl.class);
 		groupDao=(GroupDaoImpl)dao;
 	}
 	
-	public void setGroupId(String groupId){
-		this.group.setGroupId(groupId);
+	public void setGroup(Group group){
+		this.group=group;
 	}
 	
-	public void setGroupPic(String groupPic){
-		this.group.setGroupPic(groupPic);
-	}
-	
-	public void setGroupName(String groupName){
-		this.group.setGroupName(groupName);
-	}
-	
-	public void setGroupIntro(String groupIntro){
-		this.group.setGroupIntro(groupIntro);
+	public Group getGroup(){
+		return group;
 	}
 	
 	@Override

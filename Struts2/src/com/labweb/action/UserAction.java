@@ -9,43 +9,19 @@ import com.labweb.model.User;
 public class UserAction extends PageBaseAction<User>{
 	private static final long serialVersionUID = 1L;
 	private IUserDao userDao=null;
-	private User user=new User();
+	private User user;
 
 	public UserAction() {
 		super(UserDaoImpl.class,20);
 		userDao=(UserDaoImpl)dao;
 	}
 	
-	public void setUserId(String userId){
-		this.user.setUserId(userId);
+	public void setUser(User user){
+		this.user=user;
 	}
 	
-	public void setUserAccount(String userAccount){
-		this.user.setUserAccount(userAccount);
-	}
-	
-	public void setUserName(String userName){
-		this.user.setUserName(userName);
-	}
-	
-	public void setUserMajor(String userMajor){
-		this.user.setUserMajor(userMajor);
-	}
-	
-	public void setUserTel(String userTel){
-		this.user.setUserTel(userTel);
-	}
-	
-	public void setUserMail(String userMail){
-		this.user.setUserMail(userMail);
-	}
-	
-	public void setUserQq(String userQq){
-		this.user.setUserQq(userQq);
-	}
-	
-	public void setUserGroup(String userGroup){
-		this.user.setUserGroup(userGroup);
+	public User getUser(){
+		return user;
 	}
 	
 	@Override

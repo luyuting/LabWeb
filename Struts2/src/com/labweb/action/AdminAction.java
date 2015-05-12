@@ -2,23 +2,24 @@ package com.labweb.action;
 
 import com.labweb.dao.IAdminDao;
 import com.labweb.dao.impl.AdminDaoImpl;
+import com.labweb.model.Admin;
 
 public class AdminAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	private IAdminDao adminDao=null;
-	private String adminAccount;
+	private Admin admin;
 	
 	public AdminAction(){
 		super(AdminDaoImpl.class);
 		adminDao=(AdminDaoImpl)dao;
 	}
 	
-	public void setAdminAccount(String adminAccount){
-		this.adminAccount=adminAccount;
+	public void setAdmin(Admin admin){
+		this.admin=admin;
 	}
 	
-	public String getAdminAccount(){
-		return adminAccount;
+	public Admin getAdmin(){
+		return admin;
 	}
 
 	@Override

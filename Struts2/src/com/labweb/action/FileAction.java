@@ -2,6 +2,7 @@ package com.labweb.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 import org.apache.commons.io.FileUtils;
@@ -9,16 +10,26 @@ import org.apache.struts2.ServletActionContext;
 
 import com.labweb.dao.IFileDao;
 import com.labweb.dao.impl.FileDaoImpl;
+import com.labweb.model.UploadFile;
 
 public class FileAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	private IFileDao fileDao=null;
+	private UploadFile uploadFile;
 	
 	private List<File> uploadFiles;
 	private List<String> uploadFilesFileName;
 	private String[] targetFileNames;
 	private String targetFileDir;
 	private int filesCount;
+	
+	public void setUploadFile(UploadFile uploadFile){
+		this.uploadFile=uploadFile;
+	}
+	
+	public UploadFile getUploadFile(){
+		return uploadFile;
+	}
 	
 	public void setUploadFiles(List<File> uploadFiles){
 		this.uploadFiles=uploadFiles;
@@ -65,7 +76,7 @@ public class FileAction extends BaseAction{
 				List<Object> paramList=new ArrayList<Object>();
 				targetFileNames[i]=uploadFilesFileName.get(i);
 				paramList.add(targetFileNames[i]);
-				paramList.add("."+targetFileDir+"/"+targetFileNames[i]);
+				paramList.add(targetFileDir+"/"+targetFileNames[i]);
 				File targetFile=new File(serverRealPath,targetFileNames[i]);
 				try {
 					FileUtils.copyFile(uploadFiles.get(i), targetFile);
@@ -85,6 +96,16 @@ public class FileAction extends BaseAction{
 	@Override
 	public String delete() {
 		// TODO Auto-generated method stub
-		return null;
+		List<Object> paramList=new ArrayList<Object>();
+		paramList.add(uploadFile.getFileId());
+		this.setResultMesg(fileDao.doDelete(paramList), "É¾³ý");
+		return SUCCESS;
+	}
+	
+	public String download(){
+		return SUCCESS;
+	}
+	public InputStream getInputStream(){
+		return ServletActionContext.getServletContext().getResourceAsStream(uploadFile.getFilePath());
 	}
 }

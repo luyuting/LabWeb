@@ -10,23 +10,19 @@ import com.labweb.model.Lab;
 public class LabAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	private ILabDao labDao=null;
-	private Lab lab=new Lab();
+	private Lab lab;
 	
 	public LabAction(){
 		super(LabDaoImpl.class);
 		labDao=(LabDaoImpl)dao;
 	}
 	
-	public void setLabId(String labId){
-		lab.setLabId(labId);
+	public void setLab(Lab lab){
+		this.lab=lab;
 	}
 	
-	public void setLabName(String labName){
-		lab.setLabName(labName);
-	}
-	
-	public void setLabContent(String labContent){
-		lab.setLabContent(labContent);
+	public Lab getLab(){
+		return lab;
 	}
 
 	@Override

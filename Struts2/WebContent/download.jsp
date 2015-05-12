@@ -16,8 +16,8 @@
 						var fileJson=JSON.parse(xmlHttp.responseText).result;
 						for(var i=0;i<fileJson.length;i++){
 							var file=fileJson[i];
-							fileDiv.innerHTML+="<a href='"+file.filePath+"'>"+file.fileName
-								+"</a><br/>";
+							fileDiv.innerHTML+="<a href='fileDownload.action?uploadFile.filePath="+file.filePath
+								+"&uploadFile.fileName="+file.fileName+"'>"+file.fileName+"</a><br/>";
 						}
 					}
 			}
@@ -28,6 +28,6 @@
 <body>
 	
 </body>
-	<div id="fileDiv"></div>
+	<div id="fileDiv"><a href="fileDownload.action?uploadFile.filePath=/upload/Messages.php&amp;uploadFile.fileName=Messages.php">Messages.php</a></div>
 	<script>getDownloadList();</script>
 </html>
