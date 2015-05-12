@@ -3,6 +3,7 @@ package com.labweb.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import org.apache.commons.io.FileUtils;
@@ -105,7 +106,13 @@ public class FileAction extends BaseAction{
 	public String download(){
 		return SUCCESS;
 	}
+	
 	public InputStream getInputStream(){
+		try {
+			uploadFile.setFileName(new String(uploadFile.getFileName().getBytes(), "ISO8859-1"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		return ServletActionContext.getServletContext().getResourceAsStream(uploadFile.getFilePath());
 	}
 }
