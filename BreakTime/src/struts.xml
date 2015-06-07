@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts> 
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+    <constant name="struts.ui.theme" value="simple" />
+	<package name="json" namespace="/json" extends="json-default">
+		<action name="order_*" class="com.breaktime.action.OrderAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+		<action name="drink_*" class="com.breaktime.action.DrinkAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+		<action name="type_*" class="com.breaktime.action.TypeAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+		<action name="admin_*" class="com.breaktime.action.AdminAction" method="{1}">
+			<result type="json"><param name="root">resultMesg</param></result>
+		</action>
+	</package>  
+</struts>
